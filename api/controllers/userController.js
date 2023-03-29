@@ -1,6 +1,9 @@
 const User = require("../models/userModel");
-const User = require("../models/userModel");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
+const regUserName = /^[a-zA-Z]+(?:[\s.]+[a-zA-Z]+)*$/;
+const regPassword = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const userController = {
     'createUser': async (req, res) => {
         const {name, email, password} = req.body;
@@ -154,4 +157,4 @@ const userController = {
         }
     }
 }
-export default userController;
+module.exports = userController;

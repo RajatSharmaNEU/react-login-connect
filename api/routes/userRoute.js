@@ -5,10 +5,6 @@ const {createUser, editUser, deleteUser, getAll} = require("../controllers/userC
 
 const router = express.Router();
 
-const regUserName = /^[a-zA-Z]+(?:[\s.]+[a-zA-Z]+)*$/;
-const regPassword = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 //Create User
 router.post('/create', createUser)
 
