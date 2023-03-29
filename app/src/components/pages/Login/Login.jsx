@@ -9,14 +9,20 @@ const Login = (props) => {
     const passwordRef = useRef();
 
     const handleLogin = () => {
-        // console.log(userNameRef.current.value + "--" + passwordRef.current.value);
-        axios.get("http://localhost:8080/user/getAll")
-            .then(users => {
-                users.data.some(user => user.email === userNameRef.current.value)
-                    ? props.handleSuccessFulLogin()
-                    : setError("User not found")
+        axios.get("http://localhost:8080/user/login", {
+            params: {
+                email: userNameRef.current.value,
+                password: passwordRef.current.value
+            }
+        })
+            .then((response) => {
+                console.log(response);
+                props.handleSuccessFulLogin();
             })
-
+            .catch(error => {
+                console.log(error);
+                setError(error?.response?.data?.message);
+            });
     }
     return (
         <div className="login-page">

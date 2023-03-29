@@ -24,8 +24,10 @@ app.use(methodOverride("X-HTTP-Method-Override"));
 app.use(express.static(__dirname + "/public"));
 //routes================
 const userRouter = require('./routes/userRoute')
+const loginRouter = require('./routes/loginRoute')
 //configure routes
 app.use('/user', userRouter);
+app.use('/user', loginRouter);
 //start app=============
 //startup app at port
 app.listen(port);
