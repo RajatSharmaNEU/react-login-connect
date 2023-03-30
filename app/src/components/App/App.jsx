@@ -15,7 +15,7 @@ import "./app.scss";
 import Footer from "../common/Footer/Footer";
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     function handleSuccessFulLogin() {
         console.log("loggedIn Successfully");

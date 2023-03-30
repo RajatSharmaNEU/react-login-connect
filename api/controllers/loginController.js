@@ -6,6 +6,17 @@ const loginController = {
         const {email, password} = req.query;
         const existingUser = await User.findOne({email});
 
+        if (!email) {
+            return res.status(400).send({
+                message: "Please enter email.",
+            });
+        }
+        if (!password) {
+            return res.status(400).send({
+                message: "Please enter password.",
+            });
+        }
+
         if(existingUser === null){
             return res.status(401).send({
                 message: "User not found",
@@ -24,7 +35,7 @@ const loginController = {
                     message: "User exist",
                 });
             } else {
-                return res.status(401).send({
+                return res.status(404).send({
                     message: "User not found",
                 });
             }
