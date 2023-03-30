@@ -25,11 +25,17 @@ function App() {
         <Router>
             {isLoggedIn && <Navigation/>}
             <Routes>
-                <Route path='/' element={isLoggedIn ? <Navigate to="/home"/> : <Login handleSuccessFulLogin={handleSuccessFulLogin}/>}/>
+                <Route path='/'
+                       element={
+                           isLoggedIn ?
+                               <Navigate to="/home"/> :
+                               <Login handleSuccessFulLogin={handleSuccessFulLogin}/>
+                       }
+                />
                 <Route path='/home' element={<Home/>}/>
-                <Route path='/about' element={<AboutUs/>}/>
                 <Route path='/jobs' element={<Jobs/>}/>
-                <Route path='/profile' element={<Contact/>}/>
+                <Route path='/about' element={<AboutUs/>}/>
+                <Route path='/contact' element={<Contact/>}/>
             </Routes>
         </Router>
     );

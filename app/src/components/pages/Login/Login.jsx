@@ -1,7 +1,8 @@
 import React, {useRef, useState} from "react";
-import "./login.scss";
+import "../../../styles/form.scss";
 import {func} from "prop-types";
 import axios from "axios";
+import {Alert, Button, Form} from "react-bootstrap";
 
 const Login = (props) => {
     const [error, setError] = useState("");
@@ -15,33 +16,36 @@ const Login = (props) => {
                 password: passwordRef.current.value
             }
         })
-            .then((response) => {
-                console.log(response);
+            .then(() => {
                 props.handleSuccessFulLogin();
             })
             .catch(error => {
-                console.log(error);
                 setError(error?.response?.data?.message);
             });
     }
     return (
-        <div className="login-page">
-            {error && <h1>{error}</h1>}
-            <h1>Login Page</h1>
-            <form>
-                <label>
-                    Username:
-                    <input type="text" ref={userNameRef} className="login-input"/>
-                </label>
-                <br/>
-                <label>
-                    Password:
-                    <input type="password" ref={passwordRef} className="login-input"/>
-                </label>
-                <br/>
-                <button type='button' className="login-button" onClick={handleLogin}>Sign In</button>
-            </form>
-        </div>
+        <>
+            {
+                error &&
+                <Alert className="position-absolute top-0 w-100 text-center" variant="danger" onClose={() => setError(null)} dismissible>
+                    {error}
+                </Alert>
+            }
+            <div className="container col-5 login-form">
+                <h3 className="text-center mt-5">Roast Cafe Login</h3>
+                <Form>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="email" placeholder="Enter Email" ref={userNameRef}/>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Enter Password" ref={passwordRef}/>
+                    </Form.Group>
+                    <Button variant="outline-secondary" onClick={handleLogin}>Login</Button>
+                </Form>
+            </div>
+        </>
     )
 }
 
