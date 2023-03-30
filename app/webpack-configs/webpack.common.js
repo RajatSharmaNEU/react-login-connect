@@ -28,7 +28,7 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Shortlist Characters',
+        title: 'Roast Cafe',
         template: 'webpack-configs/templates/index.html',
       }),
     ],

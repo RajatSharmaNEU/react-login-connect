@@ -6,37 +6,48 @@ import {
     Navigate
 } from "react-router-dom";
 import Login from "../pages/Login/Login";
-import Navigation from "../Navigation/Navigation";
+import Navigation from "../common/Navigation/Navigation";
 import Home from "../pages/Home/Home";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import Jobs from "../pages/Jobs/Jobs";
 import Contact from "../pages/Contact/Contact";
 import "./app.scss";
+import Footer from "../common/Footer/Footer";
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     function handleSuccessFulLogin() {
         console.log("loggedIn Successfully");
         setIsLoggedIn(true);
     }
 
+    function handleSignOut() {
+        setIsLoggedIn(false);
+    }
+
     return (
         <Router>
-            {isLoggedIn && <Navigation/>}
+            {isLoggedIn && <Navigation handleSignOut={handleSignOut}/>}
             <Routes>
-                <Route path='/'
+                <Route exact path='/'
                        element={
                            isLoggedIn ?
                                <Navigate to="/home"/> :
                                <Login handleSuccessFulLogin={handleSuccessFulLogin}/>
                        }
                 />
-                <Route path='/home' element={<Home/>}/>
-                <Route path='/jobs' element={<Jobs/>}/>
-                <Route path='/about' element={<AboutUs/>}/>
-                <Route path='/contact' element={<Contact/>}/>
+                {
+                    isLoggedIn  &&
+                    <>
+                        <Route path='/home' element={<Home/>}/>
+                        <Route path='/jobs' element={<Jobs/>}/>
+                        <Route path='/about' element={<AboutUs/>}/>
+                        <Route path='/contact' element={<Contact/>}/>
+                    </>
+                }
             </Routes>
+            <Footer/>
         </Router>
     );
 }

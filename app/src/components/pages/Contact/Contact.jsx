@@ -7,8 +7,8 @@ const Contact = () => {
         event.target.reset();
     }
     return (
-        <div className="container mt-5 col-6 offset-3">
-            <h2 className="mb-3">Contact us for further information.</h2>
+        <div className="container mt-5 mb-5 col-6 offset-3">
+            <h1 className="text-primary text-center mb-5">Contact us for further information.</h1>
             <Form onSubmit={handleSubmit} className="align-items-stretch">
                 <Form.Group className="mb-3">
                     <Form.Label>Name</Form.Label>

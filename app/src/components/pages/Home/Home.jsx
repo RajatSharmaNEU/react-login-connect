@@ -1,11 +1,11 @@
 import React from "react";
-import Cards from "../../common/Cards";
+import Cards from "../../common/Card/Cards";
 import HomeData from "../../../content/HomeData";
 import {Container} from "react-bootstrap";
 
 const Home = () => {
     return (
-        <Container className="text-center">
+        <Container className="text-center mt-5 mb-5">
             <h1 className="text-primary">Roast Cafe</h1>
             <h5 className="text-dark m-5">
                 Welcome to our cozy and charming cafe! Here at Roast, we strive to provide a warm and inviting
